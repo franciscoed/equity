@@ -26,6 +26,8 @@ os.chdir("/tmp")
 os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
 os.chdir("/tmp/ta-lib")
 os.system("./configure")
+os.system("make")
+os.system("whoami")
 
 
 def get_symbol(symbol):
