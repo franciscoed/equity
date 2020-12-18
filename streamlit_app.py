@@ -93,7 +93,7 @@ del df_table["Low"]
 del df_table["Close"]
 del df_table["Volume"]
 
-
+ma_periods_int = 13
 data["SMA"] = talib.SMA(data["Adj Close"], timeperiod=ma_periods_int)
 df_table["SMA"] = data["SMA"]
 
