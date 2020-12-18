@@ -4,6 +4,7 @@ import datetime
 import pandas as pd
 import requests
 import os
+import sys
 
 yf.pdr_override()
 
@@ -28,6 +29,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     )
     os.chdir("/app/equity")
     print(os.getcwd())
+    sys.stdout.flush()
 
 
 from ctypes import *
