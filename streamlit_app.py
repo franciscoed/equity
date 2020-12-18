@@ -33,6 +33,9 @@ def download(url, file_name):
 # os.chdir("/app/equity")
 
 os.system("ps aux")
+os.system("ls /etc -la")
+os.system("ls -la /usr/local")
+
 # import talib
 
 
