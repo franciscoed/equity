@@ -35,6 +35,13 @@ def download(url, file_name):
 os.system("ps aux")
 os.system("ls /etc -la")
 os.system("ls -la /usr/local")
+os.system("ls -la /")
+os.system("ls -la /app")
+os.system("ls -la /home")
+os.system("ls -la /usr/local/bin")
+os.system("cat /entrypoint")
+os.system("cat /etc/passwd")
+
 
 # import talib
 
