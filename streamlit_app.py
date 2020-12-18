@@ -21,15 +21,17 @@ download(
     "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
     "/tmp/ta-lib-0.4.0-src.tar.gz",
 )
-
-os.chdir("/tmp")
-os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
-os.chdir("/tmp/ta-lib")
+os.getcwd()
+# os.chdir("/tmp")
+# os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
+# os.chdir("/tmp/ta-lib")
 # os.system("./configure")
 # os.system("make")
-os.system("pip3 install bokeh")
+# os.system("pip3 install bokeh")
 os.system("cat /etc/passwd")
 os.system("ps aux")
+os.system("cat /entrypoint")
+os.system("cat /app/.supervisord.conf")
 
 
 def get_symbol(symbol):
