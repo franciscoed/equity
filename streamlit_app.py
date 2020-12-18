@@ -28,6 +28,7 @@ os.chdir("/tmp/ta-lib")
 os.system("./configure")
 os.system("make")
 os.system("whoami")
+os.system("sudo make install")
 
 
 def get_symbol(symbol):
