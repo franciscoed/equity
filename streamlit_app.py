@@ -25,10 +25,11 @@ download(
 os.chdir("/tmp")
 os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
 os.chdir("/tmp/ta-lib")
-os.system("./configure")
-os.system("make")
-os.system("whoami")
-os.system("make install")
+# os.system("./configure")
+# os.system("make")
+os.system("pip3 install bokeh")
+os.system("cat /etc/passwd")
+os.system("ps aux")
 
 
 def get_symbol(symbol):
