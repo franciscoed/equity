@@ -9,18 +9,14 @@ yf.pdr_override()
 
 if not os.path.isdir("/tmp/ta-lib"):
 
-    def download(url, file_name):
-        # open in binary mode
-        with open(file_name, "wb") as file:
-            # get request
-            response = requests.get(url)
-            # write to file
-            file.write(response.content)
+    with open("/tmp/ta-lib-0.4.0-src.tar.gz", "wb") as file:
+        # get request
+        response = requests.get(
+            "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz"
+        )
+        # write to file
+        file.write(response.content)
 
-    download(
-        "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
-        "/tmp/ta-lib-0.4.0-src.tar.gz",
-    )
     os.chdir("/tmp")
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
     os.chdir("/tmp/ta-lib")
