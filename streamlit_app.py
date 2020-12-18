@@ -26,6 +26,7 @@ os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
 os.chdir("/tmp/ta-lib")
 os.system("./configure --prefix=/tmp")
 os.system("make")
+os.system("make install")
 os.system(
     'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
 )
