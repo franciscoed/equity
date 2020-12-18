@@ -38,6 +38,9 @@ lib = CDLL("/home/appuser/lib/libta_lib.so.0")
 
 import talib
 
+print(os.getcwd())
+sys.stdout.flush()
+
 
 def get_symbol(symbol):
     url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={}&region=1&lang=en".format(
