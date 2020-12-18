@@ -17,23 +17,23 @@ def download(url, file_name):
         file.write(response.content)
 
 
-download(
-    "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
-    "/tmp/ta-lib-0.4.0-src.tar.gz",
-)
-os.chdir("/tmp")
-os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
-os.chdir("/tmp/ta-lib")
-os.system("./configure --prefix=/tmp")
-os.system("make")
-os.system("make install")
-os.system(
-    'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
-)
-os.chdir("/app/equity")
+# download(
+#     "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
+#     "/tmp/ta-lib-0.4.0-src.tar.gz",
+# )
+# os.chdir("/tmp")
+# os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
+# os.chdir("/tmp/ta-lib")
+# os.system("./configure --prefix=/tmp")
+# os.system("make")
+# os.system("make install")
+# os.system(
+#     'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
+# )
+# os.chdir("/app/equity")
 
-
-import talib
+os.system("ps aux")
+# import talib
 
 
 def get_symbol(symbol):
