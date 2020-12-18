@@ -6,17 +6,18 @@ import requests
 import os
 import sys
 
-yf.pdr_override()
 
+
+# check if the library folder already exists, to avoid building everytime you load the pahe
 if not os.path.isdir("/tmp/ta-lib"):
 
+    # Download ta-lib to disk
     with open("/tmp/ta-lib-0.4.0-src.tar.gz", "wb") as file:
-        # get request
         response = requests.get(
             "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz"
         )
-        # write to file
         file.write(response.content)
+    # get our current dir, to configure it back again. Just house keeping
     default_cwd = os.getcwd()
     os.chdir("/tmp")
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
@@ -39,6 +40,7 @@ lib = CDLL("/home/appuser/lib/libta_lib.so.0")
 import talib
 
 
+yf.pdr_override()
 def get_symbol(symbol):
     url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={}&region=1&lang=en".format(
         symbol
