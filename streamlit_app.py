@@ -20,31 +20,19 @@ if not os.path.isdir("/tmp/ta-lib"):
     os.chdir("/tmp")
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
     os.chdir("/tmp/ta-lib")
-    os.system("./configure --prefix=/tmp")
+    os.system("./configure --prefix=/home/appuser")
     os.system("make")
     os.system("make install")
     os.system(
-        'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
+        'pip3 install --global-option=build_ext --global-option="-L/home/appuser/lib/" --global-option="-I/home/appuser/include/" ta-lib'
     )
     os.chdir("/app/equity")
+    print(os.getcwd())
 
-    os.system("ps aux")
-    os.system("ls /etc -la")
-    os.system("ls -la /usr/local")
-    os.system("ls -la /")
-    os.system("ls -la /app")
-    os.system("ls -la /home/appuser")
-    os.system("ls -la /usr/local/bin")
-    os.system("cat /entrypoint")
-    os.system("cat /etc/passwd")
-    os.system("env")
-    os.system("ls /app/secrets")
-    os.system("ls /tmp/lib")
 
 from ctypes import *
 
-lib = CDLL("/tmp/lib/libta_lib.so.0")
-
+lib = CDLL("/home/appuser/lib/libta_lib.so.0")
 
 import talib
 
