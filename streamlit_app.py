@@ -47,6 +47,8 @@ os.system("ls /tmp/lib")
 
 from ctypes import *
 
+lib = CDLL("/tmp/lib/libta_lib.so.0")
+
 
 import talib
 
