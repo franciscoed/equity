@@ -21,7 +21,7 @@ download(
     "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
     "/tmp/ta-lib-0.4.0-src.tar.gz",
 )
-os.getcwd()
+os.system("pwd")
 # os.chdir("/tmp")
 # os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
 # os.chdir("/tmp/ta-lib")
