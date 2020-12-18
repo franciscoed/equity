@@ -17,7 +17,7 @@ if not os.path.isdir("/tmp/ta-lib"):
         )
         # write to file
         file.write(response.content)
-
+    default_cwd = os.getcwd()
     os.chdir("/tmp")
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
     os.chdir("/tmp/ta-lib")
@@ -27,7 +27,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     os.system(
         'pip3 install --global-option=build_ext --global-option="-L/home/appuser/lib/" --global-option="-I/home/appuser/include/" ta-lib'
     )
-    os.chdir("/app/equity")
+    os.chdir(default_cwd)
     print(os.getcwd())
     sys.stdout.flush()
 
@@ -37,9 +37,6 @@ from ctypes import *
 lib = CDLL("/home/appuser/lib/libta_lib.so.0")
 
 import talib
-
-print(os.getcwd())
-sys.stdout.flush()
 
 
 def get_symbol(symbol):
