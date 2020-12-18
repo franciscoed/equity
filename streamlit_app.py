@@ -1,11 +1,31 @@
 import yfinance as yf
 import streamlit as st
 import datetime
-import talib
 import pandas as pd
 import requests
 
+
 yf.pdr_override()
+
+
+def download(url, file_name):
+    # open in binary mode
+    with open(file_name, "wb") as file:
+        # get request
+        response = requests.get(url)
+        # write to file
+        file.write(response.content)
+
+
+download(
+    "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
+    "/tmp/ta-lib-0.4.0-src.tar.gz",
+)
+
+os.chdir("/tmp")
+os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
+os.chdir("/tmp/ta-lib")
+os.system("./configure")
 
 
 def get_symbol(symbol):
@@ -23,7 +43,9 @@ st.sidebar.header("User Input Parameters")
 today = datetime.date.today()
 date_from = date_from = (today - datetime.timedelta(days=366)).strftime("%Y-%m-%d")
 
-symbol = st.sidebar.selectbox("Ticker", ["PETR4.SA", "VALE3.SA"])
+symbol = st.sidebar.selectbox(
+    "Ticker", ["PETR4.SA", "VALE3.SA", "ABEV3.SA", "AZUL4.SA"]
+)
 company_name = get_symbol(symbol.upper())
 
 st.write(company_name)
@@ -35,69 +57,17 @@ end = pd.to_datetime(today)
 # Read data
 data = yf.download(symbol, start, end)
 
+
 # Adjusted Close Price
 st.header(f"Adjusted Close Price")
 st.line_chart(data["Adj Close"])
+df_table = data.copy()
+del df_table["Open"]
+del df_table["High"]
+del df_table["Low"]
+del df_table["Close"]
+del df_table["Volume"]
 
-indicator_list = st.sidebar.multiselect(
-    "Indicators", ["SMA/EMA", "Bollinger Bands", "MACD", "RSI"]
-)
-
-
-if "SMA/EMA" in indicator_list:
-    ma_periods = st.sidebar.text_input("SMA/EMA Periods", value=13)
-    try:
-        ma_periods_int = int(ma_periods)
-    except:
-        ma_periods_int = 13
-    # ## SMA and EMA
-    # Simple Moving Average
-    data["SMA"] = talib.SMA(data["Adj Close"], timeperiod=ma_periods_int)
-
-    # Exponential Moving Average
-    data["EMA"] = talib.EMA(data["Adj Close"], timeperiod=ma_periods_int)
-
-    # Plot
-    st.header(f"SMA/EMA - Periods: {ma_periods_int}")
-    st.line_chart(data[["Adj Close", "SMA", "EMA"]])
-
-if "Bollinger Bands" in indicator_list:
-    # Bollinger Bands
-    data["upper_band"], data["middle_band"], data["lower_band"] = talib.BBANDS(
-        data["Adj Close"], timeperiod=20
-    )
-
-    # Plot
-    st.header(f"Bollinger Bands")
-    st.line_chart(data[["Adj Close", "upper_band", "middle_band", "lower_band"]])
-
-
-if "MACD" in indicator_list:
-    # ## MACD (Moving Average Convergence Divergence)
-    # MACD
-    data["macd"], data["macdsignal"], data["macdhist"] = talib.MACD(
-        data["Adj Close"], fastperiod=12, slowperiod=26, signalperiod=9
-    )
-
-    # Plot
-    st.header(f"Moving Average Convergence Divergence")
-    st.line_chart(data[["macd", "macdsignal"]])
-
-if "RSI" in indicator_list:
-    # ## RSI (Relative Strength Index)
-    # RSI
-    data["RSI"] = talib.RSI(data["Adj Close"], timeperiod=14)
-
-    # Plot
-    st.header(f"Relative Strength Index")
-    st.line_chart(data["RSI"])
-
-# ## OBV (On Balance Volume)
-# OBV
-data["OBV"] = talib.OBV(data["Adj Close"], data["Volume"]) / 10 ** 6
-# Plot
-st.header(f"On Balance Volume")
-st.bar_chart(data["OBV"])
 
 if st.checkbox("View raw data"):
     if st.checkbox("Reverse", value=True):

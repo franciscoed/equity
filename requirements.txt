@@ -1,6 +1,4 @@
 pandas==1.1.2
 requests==2.24.0
 streamlit==0.67.1
-ta==0.5.25
-TA-Lib==0.4.19
 yfinance==0.1.54
