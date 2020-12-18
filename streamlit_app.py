@@ -147,6 +147,9 @@ st.altair_chart(chart, use_container_width=True)
 
 
 # Candlesticks Bokeh
+import bokeh.sampledata
+
+bokeh.sampledata.download()
 from bokeh.sampledata.stocks import MSFT
 from math import pi
 
