@@ -7,43 +7,43 @@ import os
 
 yf.pdr_override()
 
+if not os.path.isdir("/tmp/ta-lib"):
 
-def download(url, file_name):
-    # open in binary mode
-    with open(file_name, "wb") as file:
-        # get request
-        response = requests.get(url)
-        # write to file
-        file.write(response.content)
+    def download(url, file_name):
+        # open in binary mode
+        with open(file_name, "wb") as file:
+            # get request
+            response = requests.get(url)
+            # write to file
+            file.write(response.content)
 
+    download(
+        "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
+        "/tmp/ta-lib-0.4.0-src.tar.gz",
+    )
+    os.chdir("/tmp")
+    os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
+    os.chdir("/tmp/ta-lib")
+    os.system("./configure --prefix=/tmp")
+    os.system("make")
+    os.system("make install")
+    os.system(
+        'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
+    )
+    os.chdir("/app/equity")
 
-download(
-    "http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz",
-    "/tmp/ta-lib-0.4.0-src.tar.gz",
-)
-os.chdir("/tmp")
-os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
-os.chdir("/tmp/ta-lib")
-os.system("./configure --prefix=/tmp")
-os.system("make")
-os.system("make install")
-os.system(
-    'pip3 install --global-option=build_ext --global-option="-L/tmp/lib/" --global-option="-I/tmp/include/" ta-lib'
-)
-os.chdir("/app/equity")
-
-os.system("ps aux")
-os.system("ls /etc -la")
-os.system("ls -la /usr/local")
-os.system("ls -la /")
-os.system("ls -la /app")
-os.system("ls -la /home/appuser")
-os.system("ls -la /usr/local/bin")
-os.system("cat /entrypoint")
-os.system("cat /etc/passwd")
-os.system("env")
-os.system("ls /app/secrets")
-os.system("ls /tmp/lib")
+    os.system("ps aux")
+    os.system("ls /etc -la")
+    os.system("ls -la /usr/local")
+    os.system("ls -la /")
+    os.system("ls -la /app")
+    os.system("ls -la /home/appuser")
+    os.system("ls -la /usr/local/bin")
+    os.system("cat /entrypoint")
+    os.system("cat /etc/passwd")
+    os.system("env")
+    os.system("ls /app/secrets")
+    os.system("ls /tmp/lib")
 
 from ctypes import *
 
