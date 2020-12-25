@@ -10,7 +10,6 @@ import plotly.graph_objects as go
 import altair as alt
 from bokeh.plotting import figure
 
-
 # check if the library folder already exists, to avoid building everytime you load the pahe
 if not os.path.isdir("/tmp/ta-lib"):
 
@@ -26,11 +25,14 @@ if not os.path.isdir("/tmp/ta-lib"):
     # untar
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
     os.chdir("/tmp/ta-lib")
+    os.chdir("ls -la /app/")
     # build
     os.system("./configure --prefix=/home/appuser")
     os.system("make")
     # install
     os.system("make install")
+    # bokeh sample data
+    os.system("bokeh sampledata")
     # install python package
     os.system(
         'pip3 install --global-option=build_ext --global-option="-L/home/appuser/lib/" --global-option="-I/home/appuser/include/" ta-lib'
@@ -147,9 +149,6 @@ st.altair_chart(chart, use_container_width=True)
 
 
 # Candlesticks Bokeh
-import bokeh.sampledata
-
-bokeh.sampledata.download()
 from bokeh.sampledata.stocks import MSFT
 from math import pi
 
