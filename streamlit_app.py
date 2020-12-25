@@ -25,7 +25,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     # untar
     os.system("tar -zxvf ta-lib-0.4.0-src.tar.gz")
     os.chdir("/tmp/ta-lib")
-    os.chdir("ls -la /app/")
+    os.system("ls -la /app/")
     # build
     os.system("./configure --prefix=/home/appuser")
     os.system("make")
