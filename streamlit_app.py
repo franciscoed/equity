@@ -43,6 +43,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     sys.stdout.flush()
 
 os.system("ls -la /home/appuser/lib")
+os.system("pip3 list")
 # add the library to our current environment
 print("Import ctypes")
 from ctypes import *
