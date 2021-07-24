@@ -40,6 +40,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     # back to the cwd
     os.chdir(default_cwd)
     print(os.getcwd())
+    os.system("ls -la /home/appuser")
     sys.stdout.flush()
 
 # add the library to our current environment
