@@ -43,9 +43,12 @@ if not os.path.isdir("/tmp/ta-lib"):
     sys.stdout.flush()
 
 # add the library to our current environment
+print("Import ctypes")
 from ctypes import *
 
+print("CDLL") 
 lib = CDLL("/home/appuser/lib/libta_lib.so.0")
+print("Importing talib")
 # import library
 import talib
 
