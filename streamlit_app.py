@@ -47,6 +47,7 @@ os.system("which python3")
 
 os.system("strace /usr/local/bin/python3 /app/equity/temp1.py")
 os.system("/usr/local/bin/python3 /app/equity/temp1.py")
+os.system("python3 --version")
 # add the library to our current environment
 print("Import ctypes")
 from ctypes import *
