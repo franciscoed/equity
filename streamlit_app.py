@@ -45,7 +45,7 @@ if not os.path.isdir("/tmp/ta-lib"):
 os.system("ls -la /home/appuser/lib")
 os.system("which python3")
 
-os.system("python3 --version")
+os.system("strace /usr/local/bin/python3 /app/temp1.py")
 # add the library to our current environment
 print("Import ctypes")
 from ctypes import *
