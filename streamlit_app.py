@@ -10,6 +10,7 @@ import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import altair as alt
 from bokeh.plotting import figure
+import subprocess
 
 # check if the library folder already exists, to avoid building everytime you load the pahe
 if not os.path.isdir("/tmp/ta-lib"):
@@ -67,6 +68,13 @@ importlib.reload(site)
 
 #talib = importlib.import_module("talib")
 #import talib
+
+try:
+    import talib
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", '--global-option=build_ext', '--global-option="-L/home/appuser/lib/"', '--global-option="-I/home/appuser/include/"', 'ta-lib'])
+finally:
+    import talib
 
 
 yf.pdr_override()
