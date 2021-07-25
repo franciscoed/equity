@@ -9,7 +9,6 @@ import sys
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import altair as alt
-from bokeh.plotting import figure
 import subprocess
 
 # check if the library folder already exists, to avoid building everytime you load the pahe
@@ -34,14 +33,6 @@ if not os.path.isdir("/tmp/ta-lib"):
     # install
     os.system("make install")
     # bokeh sample data
-    os.system("bokeh sampledata")
-    # install python package
-    os.system(
-        'pip3 install --global-option=build_ext --global-option="-L/home/appuser/lib/" --global-option="-I/home/appuser/include/" ta-lib'
-    )
-    # back to the cwd
-    os.chdir(default_cwd)
-    print(os.getcwd())
     sys.stdout.flush()
 
 # add the library to our current environment
@@ -63,14 +54,14 @@ finally:
 yf.pdr_override()
 
 
-def get_symbol(symbol):
-    url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={}&region=1&lang=en".format(
-        symbol
-    )
-    result = requests.get(url).json()
-    for x in result["ResultSet"]["Result"]:
-        if x["symbol"] == symbol:
-            return x["name"]
+# def get_symbol(symbol):
+#     url = "http://d.yimg.com/autoc.finance.yahoo.com/autoc?query={}&region=1&lang=en".format(
+#         symbol
+#     )
+#     result = requests.get(url).json()
+#     for x in result["ResultSet"]["Result"]:
+#         if x["symbol"] == symbol:
+#             return x["name"]
 
 
 st.sidebar.header("User Input Parameters")
@@ -81,9 +72,9 @@ date_from = date_from = (today - datetime.timedelta(days=366)).strftime("%Y-%m-%
 symbol = st.sidebar.selectbox(
     "Ticker", ["PETR4.SA", "VALE3.SA", "ABEV3.SA", "AZUL4.SA"]
 )
-company_name = get_symbol(symbol.upper())
+# company_name = get_symbol(symbol.upper())
 
-st.write(company_name)
+st.write(symbol.upper())
 
 
 start = pd.to_datetime(date_from)
