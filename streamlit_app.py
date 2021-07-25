@@ -80,6 +80,8 @@ end = pd.to_datetime(today)
 # Read data
 data = yf.download(symbol, start, end)
 
+st.write("Yahoo .... ok")
+
 
 # Adjusted Close Price
 st.header(f"Adjusted Close Price")
