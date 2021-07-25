@@ -60,6 +60,11 @@ print(str(lib))
 print("Importing talib")
 sys.stdout.flush()
 # import library
+
+sys.path.append("/home/appuser")
+import site
+importlib.reload(site)
+
 talib = importlib.import_module("talib")
 #import talib
 
