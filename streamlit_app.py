@@ -44,35 +44,17 @@ if not os.path.isdir("/tmp/ta-lib"):
     print(os.getcwd())
     sys.stdout.flush()
 
-os.system("ls -la /home/appuser/lib")
-os.system("which python3")
-
-os.system("strace /usr/local/bin/python3 /app/equity/temp1.py")
-os.system("/usr/local/bin/python3 /app/equity/temp1.py")
-os.system("python3 --version")
-os.system("ls /etc/apt/sources.list.d/")
 # add the library to our current environment
-print("Import ctypes")
 from ctypes import *
 
 print("CDLL") 
 lib = CDLL("/home/appuser/lib/libta_lib.so.0.0.0")
-print(str(lib))
-print("Importing talib")
 sys.stdout.flush()
 # import library
-
-sys.path.append("/home/appuser")
-import site
-importlib.reload(site)
-
-#talib = importlib.import_module("talib")
-#import talib
-
 try:
     import talib
 except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", '--global-option=build_ext', '--global-option="-L/home/appuser/lib/"', '--global-option="-I/home/appuser/include/"', 'ta-lib'])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--global-option=build_ext", "--global-option=\"-L/home/appuser/lib/\"", "--global-option=\"-I/home/appuser/include/\"", "ta-lib"])
 finally:
     import talib
 
