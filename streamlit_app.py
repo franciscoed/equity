@@ -4,6 +4,7 @@ import datetime
 import pandas as pd
 import requests
 import os
+impoty importlib
 import sys
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
@@ -59,6 +60,7 @@ print(str(lib))
 print("Importing talib")
 sys.stdout.flush()
 # import library
+globals()["talib"] = importlib.import_module("talib")
 import talib
 
 
