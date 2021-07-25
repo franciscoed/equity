@@ -61,7 +61,7 @@ print("Importing talib")
 sys.stdout.flush()
 # import library
 globals()["talib"] = importlib.import_module("talib")
-import talib
+#import talib
 
 
 yf.pdr_override()
