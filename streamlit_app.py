@@ -1,5 +1,5 @@
 import streamlit as st
-import yfinace as yf
+import yfinance as yf
 import requests
 import os
 import sys
