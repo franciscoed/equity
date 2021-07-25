@@ -149,44 +149,44 @@ st.altair_chart(chart, use_container_width=True)
 # st.altair_chart(rule + bar, use_container_width=True)
 
 
-# Candlesticks Bokeh
-from bokeh.sampledata.stocks import MSFT
-from math import pi
+# # Candlesticks Bokeh
+# from bokeh.sampledata.stocks import MSFT
+# from math import pi
 
-df = pd.DataFrame(MSFT)[:50]
-df["date"] = pd.to_datetime(df["date"])
+# df = pd.DataFrame(MSFT)[:50]
+# df["date"] = pd.to_datetime(df["date"])
 
-inc = df.close > df.open
-dec = df.open > df.close
-w = 12 * 60 * 60 * 1000  # half day in ms
+# inc = df.close > df.open
+# dec = df.open > df.close
+# w = 12 * 60 * 60 * 1000  # half day in ms
 
-TOOLS = "pan,wheel_zoom,box_zoom,reset"
+# TOOLS = "pan,wheel_zoom,box_zoom,reset"
 
-p = figure(
-    x_axis_type="datetime", tools=TOOLS, plot_width=1000, title="MSFT Candlestick"
-)
-p.xaxis.major_label_orientation = pi / 4
-p.grid.grid_line_alpha = 0.3
+# p = figure(
+#     x_axis_type="datetime", tools=TOOLS, plot_width=1000, title="MSFT Candlestick"
+# )
+# p.xaxis.major_label_orientation = pi / 4
+# p.grid.grid_line_alpha = 0.3
 
-p.segment(df.date, df.high, df.date, df.low, color="black")
-p.vbar(
-    df.date[inc],
-    w,
-    df.open[inc],
-    df.close[inc],
-    fill_color="#06982d",
-    line_color="#06982d",
-)
-p.vbar(
-    df.date[dec],
-    w,
-    df.open[dec],
-    df.close[dec],
-    fill_color="#ae1325",
-    line_color="#ae1325",
-)
+# p.segment(df.date, df.high, df.date, df.low, color="black")
+# p.vbar(
+#     df.date[inc],
+#     w,
+#     df.open[inc],
+#     df.close[inc],
+#     fill_color="#06982d",
+#     line_color="#06982d",
+# )
+# p.vbar(
+#     df.date[dec],
+#     w,
+#     df.open[dec],
+#     df.close[dec],
+#     fill_color="#ae1325",
+#     line_color="#ae1325",
+# )
 
-st.bokeh_chart(p, use_container_width=True)
+# st.bokeh_chart(p, use_container_width=True)
 
 ma_periods_int = 13
 data["SMA"] = talib.SMA(data["Adj Close"], timeperiod=ma_periods_int)
