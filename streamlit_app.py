@@ -29,6 +29,7 @@ if not os.path.isdir("/tmp/ta-lib"):
     os.chdir(default_cwd)
     sys.stdout.flush()
 
+os.chdir("/app/equity/")
 # add the library to our current environment
 from ctypes import *
 
