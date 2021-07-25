@@ -1,7 +1,7 @@
 import streamlit as st
 import yfinance as yf
 import datetime
-import panda as pd
+import pandas as pd
 import requests
 import os
 import sys
