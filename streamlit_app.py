@@ -38,10 +38,7 @@ if not os.path.isdir("/tmp/ta-lib"):
 # add the library to our current environment
 from ctypes import *
 
-print("CDLL") 
 lib = CDLL("/home/appuser/lib/libta_lib.so.0.0.0")
-os.system("/home/appuser/venv/bin/python --version")
-sys.stdout.flush()
 # import library
 try:
     import talib
