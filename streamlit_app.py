@@ -1,4 +1,5 @@
 import streamlit as st
+import yfinace as yf
 import requests
 import os
 import sys
@@ -43,7 +44,7 @@ finally:
 
 st.write("Hello")
 
-# yf.pdr_override()
+yf.pdr_override()
 
 
 # # def get_symbol(symbol):
@@ -56,26 +57,26 @@ st.write("Hello")
 # #             return x["name"]
 
 
-# st.sidebar.header("User Input Parameters")
+st.sidebar.header("User Input Parameters")
 
-# today = datetime.date.today()
-# date_from = date_from = (today - datetime.timedelta(days=366)).strftime("%Y-%m-%d")
+today = datetime.date.today()
+date_from = date_from = (today - datetime.timedelta(days=366)).strftime("%Y-%m-%d")
 
-# symbol = st.sidebar.selectbox(
-#     "Ticker", ["PETR4.SA", "VALE3.SA", "ABEV3.SA", "AZUL4.SA"]
-# )
-# # company_name = get_symbol(symbol.upper())
+symbol = st.sidebar.selectbox(
+    "Ticker", ["PETR4.SA", "VALE3.SA", "ABEV3.SA", "AZUL4.SA"]
+)
+# company_name = get_symbol(symbol.upper())
 
-# st.write(symbol.upper())
+st.write(symbol.upper())
 
 
-# start = pd.to_datetime(date_from)
-# end = pd.to_datetime(today)
+start = pd.to_datetime(date_from)
+end = pd.to_datetime(today)
 
-# # Read data
-# data = yf.download(symbol, start, end)
+# Read data
+data = yf.download(symbol, start, end)
 
-# st.write("Yahoo .... ok")
+st.write("Yahoo .... ok")
 
 
 # # Adjusted Close Price
